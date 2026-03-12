@@ -3,7 +3,12 @@ Unit tests for wallet.py package
 """
 import pytest
 from src.wallet import Wallet, InsufficientAmount
-# from tests.fixtures.wallet_fixtures import empty_wallet, wallet
+
+from tests.fixtures.wallet_fixtures import empty_wallet, wallet
+
+# For flake8 otherwise, linter is not happy
+empty_wallet()
+wallet()
 
 
 def test_default_initial_amount(empty_wallet: Wallet):
@@ -28,7 +33,9 @@ def test_wallet_spend_cash(wallet: Wallet):
     assert wallet.balance == 10
 
 
-def test_wallet_spend_cash_raises_exception_on_insufficient_amount(empty_wallet: Wallet):
+def test_wallet_spend_cash_raises_exception_on_insufficient_amount(
+    empty_wallet: Wallet,
+):
     """Tests that InsufficientAmount exception is raised when trying to spend more thant the wallet's balance"""
     with pytest.raises(InsufficientAmount):
         empty_wallet.spend_cash(100)
