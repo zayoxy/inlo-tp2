@@ -2,6 +2,7 @@
 import pytest
 from src.wallet import Wallet
 
+
 # Wallet Fixtures
 @pytest.fixture
 def empty_wallet():
