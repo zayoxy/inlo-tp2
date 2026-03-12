@@ -6,10 +6,6 @@ from src.wallet import Wallet, InsufficientAmount
 
 from tests.fixtures.wallet_fixtures import empty_wallet, wallet
 
-# For flake8 otherwise, linter is not happy
-empty_wallet()
-wallet()
-
 
 def test_default_initial_amount(empty_wallet: Wallet):
     """Tests that initial balance of empty_wallet is 0"""
