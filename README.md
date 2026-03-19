@@ -28,3 +28,21 @@ Introduction à:
 ##### Mot de clé `with`
 
 Permet de passer des paramètres à une action
+
+### Exercice 2 - Qualité de code
+
+#### a)
+
+##### Question 1
+
+Sur l’onglet Summary d’une analyse de code, SonarCloud fournit 4 indicateurs.
+Quels sont-ils et quelles sont leurs utilités ?
+
+- New issues, nouveaux problèmes depuis le code
+- Accepted issues, Les "issues" depuis SonarQube cloud qui ont été résolues
+- Coverage (il faut l'activer), Coverage en pourcentage du code
+- Duplications: Code dupliqué j'imagine
+
+##### Question 2
+
+QualityGate: Pas accès pour l'instant
