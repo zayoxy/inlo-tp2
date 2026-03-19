@@ -32,7 +32,7 @@ jobs:
           # uv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude __pycache__,.venv,setup.py
       - name: Test with pytest
         run: |
-          uv run pytest
+          uv run pytest --cov=. --cov-report=xml
       
       - name: SonarQube Scan
 
