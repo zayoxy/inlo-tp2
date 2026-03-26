@@ -67,3 +67,37 @@ Dans l'action de sonarqube, on utilise un tag, ce qui n'est pas une bonne pratiq
 car un tag n'est pas immuable, on pourrait faire de "l'injection de tag".
 
 Sonarqube suggère d'utiliser le hash du commit à la place.
+
+
+### Exercice 3 - GitLab CI/CD
+
+#### a)
+
+##### Que fait le job pytest ?
+
+Il build le projet avec pip (uv du coup), et il lance les unit tests avec pytest.
+
+##### Que fait le job image-creation ?
+
+Il build l'image docker en utilisant le `Dockerfile` et le publie
+sur le container registry de GitLab (de la he-arc du coup).
+
+Container registry: <https://gitlab-etu.ing.he-arc.ch/alexandre.guillaume/inlo-tp2/container_registry>
+
+##### Que fait le job package-creation ?
+
+Il crée un fichier wheel du projet, qui le rendrait installable en utilisant pip (ou uv) et le publie sur le package registry du GitLab de la he-arc aussi.
+
+Package registry: <https://gitlab-etu.ing.he-arc.ch/alexandre.guillaume/inlo-tp2/-/packages>
+
+##### Dans quel ordre les différents jobs s'executent-ils et pourquoi ?
+
+Les pipelines de GitLab fonctionnent avec des stage, notre CI est composé des stages suivants:
+
+- test
+- package
+- test-package
+
+Tous les jobs du même stage sont exécutés en parallèle, 
+et tout les jobs doivent avoir fini un stage avant que les runners puissent passer au stage suivant.
+
