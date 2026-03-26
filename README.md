@@ -101,3 +101,13 @@ Les pipelines de GitLab fonctionnent avec des stage, notre CI est composé des s
 Tous les jobs du même stage sont exécutés en parallèle, 
 et tout les jobs doivent avoir fini un stage avant que les runners puissent passer au stage suivant.
 
+#### b)
+
+Installer le package depuis le registry: 
+
+```bash
+pip install tp2 --index-url https://gitlab-ci-token:<TOKEN>@gitlab-etu.ing.he-arc.ch/api/v4/projects/6003/packages/pypi/simple
+```
+
+> Le token doit avoir les accès `read_api` pour pouvoir download le package.
+

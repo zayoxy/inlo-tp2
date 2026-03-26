@@ -44,11 +44,23 @@ pytest:
 package-creation:
   stage: package
   image: $UV_IMAGE
+  variables:
+    TWINE_USERNAME: gitlab-ci-token
+    TWINE_PASSWORD: ${CI_JOB_TOKEN}
   script:
     - uv add twine
     - uv build --wheel
     # attention: le package registry n'autorise pas de pousser 2x la même version (==> changer ou supprimer le package)
-    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token uv run twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
+    - uv run twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi dist/*
   artifacts:
     paths:
       - dist/*.whl
+    
+wheel-testing:
+  stage: test-package
+  image: $UV_IMAGE
+  script:
+    - uv venv .venv
+    - source .venv/bin/activate
+    - pip install tp2 --index-url https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab-etu.ing.he-arc.ch/api/v4/projects/6003/packages/pypi/simple
+    - python -c "exec(\"from tp2.wallet import Wallet\nmy_wallet = Wallet(100)\nmy_wallet.add_cash(120)\nprint('Congratulations. You successfully installed the TP2 package')\")"
