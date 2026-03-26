@@ -3,8 +3,6 @@ FROM ghcr.io/astral-sh/uv:python3.10-alpine
 
 WORKDIR /code
 
-COPY ./setup.py /code/setup.py
-
 COPY ./pyproject.toml /code/pyproject.toml
 
 COPY ./uv.lock /code/uv.lock

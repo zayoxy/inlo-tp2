@@ -12,3 +12,10 @@ dependencies = [
     "pytest-cov==4.0.0",
     "uvicorn==0.20.0",
 ]
+
+[build-system]
+requires = ["setuptools>=82.0.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src"]
