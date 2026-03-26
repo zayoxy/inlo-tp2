@@ -111,3 +111,15 @@ pip install tp2 --index-url https://gitlab-ci-token:<TOKEN>@gitlab-etu.ing.he-ar
 
 > Le token doit avoir les accès `read_api` pour pouvoir download le package.
 
+#### c)
+
+
+##### A quel moment de la pipeline ce job s'execute-t-il et pourquoi ?
+
+Dans le dernier stage (`test-package`) donc après que les 2 tests dans le stage `package`.
+
+##### Que fait le job wheel-testing ?
+
+Il installe le package `tp2` qui à été publié au préable sur le Package registry de la he-arc.
+
+Ensuite il lance un petit programme python ou il essaie de l'importer et de l'utiliser afin de voir que tout est fonctionnel.
